@@ -1,4 +1,10 @@
 module.exports = {
+  parserOptions: {
+    parser: "babel-eslint",
+  },
+  env: {
+    browser: true,
+  },
   extends: [
     // add more generic rulesets here, such as:
     // 'eslint:recommended',
