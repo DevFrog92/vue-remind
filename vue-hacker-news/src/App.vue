@@ -1,6 +1,15 @@
 <template>
   <div id="app">
     <h1>this is main page</h1>
+    <router-link to="/news">
+      news
+    </router-link> |
+    <router-link to="/ask">
+      ask
+    </router-link> |
+    <router-link to="/jobs">
+      jobs
+    </router-link>
     <router-view />
   </div>
 </template>
