@@ -1,22 +1,17 @@
 <template>
   <div id="app">
-    <h1>this is main page</h1>
-    <router-link to="/news">
-      news
-    </router-link> |
-    <router-link to="/ask">
-      ask
-    </router-link> |
-    <router-link to="/jobs">
-      jobs
-    </router-link>
+    <tool-bar />
     <router-view />
   </div>
 </template>
 
 <script>
+import ToolBar from "@/components/ToolBar"
 
 export default {
+  components: {
+    ToolBar,
+  },
   created() {
     this.fetchData()
   },
@@ -29,12 +24,9 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 </style>
