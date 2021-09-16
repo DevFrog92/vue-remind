@@ -24,7 +24,7 @@
   color: #35495e;
 }
 
-.header a{
+.header a {
   color: #fff;
 }
 </style>
