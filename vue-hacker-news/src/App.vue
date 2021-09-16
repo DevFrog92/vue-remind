@@ -13,12 +13,8 @@ export default {
     ToolBar,
   },
   created() {
-    this.fetchData()
   },
   methods: {
-    fetchData() {
-      console.log("hello")
-    },
   },
 }
 </script>
