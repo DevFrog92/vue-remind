@@ -25,8 +25,8 @@ export default {
     // return new Promise
     // then을 연결할 수 있다.
     fetchAskList()
-      .then(() => {
-        console.log("after request", this)
+      .then((response) => {
+        this.ask = response.data
       })
       .catch(error => console.log(error))
   },
