@@ -2,10 +2,10 @@
   <div>
     <h1>Ask List</h1>
     <div
-      v-for="ask in asks"
-      :key="ask.id"
+      v-for="item in ask"
+      :key="item.id"
     >
-      {{ ask.title }}
+      {{ item.title }}
     </div>
   </div>
 </template>
@@ -15,17 +15,30 @@ import { fetchAskList, } from "../api"
 export default {
   data() {
     return {
-      asks: null,
+      ask: [],
     }
   },
   created() {
+    console.log("defore request", this)
+
+    // return axios.get
+    // return new Promise
+    // then을 연결할 수 있다.
     fetchAskList()
-      .then(response => this.asks = response.data)
+      .then(() => {
+        console.log("after request", this)
+      })
       .catch(error => console.log(error))
+  },
+  bofreMount() {
+
+  },
+  mounted() {
+    // mounte에서 data요청을 하면 vue의 reactivity system 때문에 화면이 다시 그려지게 된다.
   },
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>
