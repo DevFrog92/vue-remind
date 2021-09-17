@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>News List</h1>
     <div
       v-for="user in users"
       :key="user.id"
