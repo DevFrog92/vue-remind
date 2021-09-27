@@ -2,7 +2,7 @@
   <div>
     <h1>Ask List</h1>
     <div
-      v-for="item in ask"
+      v-for="item in this.$store.state.ask"
       :key="item.id"
     >
       {{ item.title }}
@@ -11,7 +11,6 @@
 </template>
 
 <script>
-import { fetchAskList, } from "../api"
 export default {
   data() {
     return {
@@ -19,16 +18,7 @@ export default {
     }
   },
   created() {
-    console.log("defore request", this)
-
-    // return axios.get
-    // return new Promise
-    // then을 연결할 수 있다.
-    fetchAskList()
-      .then((response) => {
-        this.ask = response.data
-      })
-      .catch(error => console.log(error))
+    this.$store.dispatch("FETCH_ASK")
   },
   bofreMount() {
 
