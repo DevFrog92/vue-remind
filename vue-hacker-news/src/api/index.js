@@ -18,8 +18,6 @@ function fetchJobsList() {
   return axios.get(`${config.baseUrl}/jobs/1.json`)
 }
 
-
-
 export {
   fetchNewsList,
   fetchAskList,

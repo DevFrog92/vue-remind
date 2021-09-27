@@ -1,21 +1,29 @@
 <template>
   <div>
     <h1>Ask List</h1>
-    <div
+    <p
       v-for="item in this.$store.state.ask"
       :key="item.id"
     >
-      {{ item.title }}
-    </div>
+      <a
+        :href="item.url"
+        target="_blank"
+      >
+        {{ item.title }}
+      </a>
+      <small>{{ item.time_ago }} by {{ item.user }}</small>
+    </p>
   </div>
 </template>
 
 <script>
+import { mapGetters, } from "vuex"
+
 export default {
-  data() {
-    return {
-      ask: [],
-    }
+  computed: {
+    ...mapGetters({
+      askItems: "fetchedAsk",
+    }),
   },
   created() {
     this.$store.dispatch("FETCH_ASK")
