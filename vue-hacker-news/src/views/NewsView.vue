@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import {fetchNewsList, } from "../api/index.js"
+import { fetchNewsList, } from "../api/index.js"
 
 export default {
   data() {
@@ -20,9 +20,11 @@ export default {
     }
   },
   created() {
-    // pronmise 기반의 api
+    // promise 기반의 api
     fetchNewsList()
-      .then(response => this.users = response.data)
+      .then(response => {
+        this.users = response.data
+      })
       .catch(error => console.log(error))
   },
 }
