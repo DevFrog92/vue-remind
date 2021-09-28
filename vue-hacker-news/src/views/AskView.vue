@@ -9,7 +9,9 @@
         :href="item.url"
         target="_blank"
       >
-        {{ item.title }}
+        <router-link :to="`/ask/${item.id}`">
+          {{ item.title }}
+        </router-link>
       </a>
       <small>{{ item.time_ago }} by {{ item.user }}</small>
     </p>
