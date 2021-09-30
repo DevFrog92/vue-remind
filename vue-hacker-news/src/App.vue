@@ -28,6 +28,22 @@ body {
   box-sizing: border-box;
 }
 
+a {
+  color: #34495e;
+  text-decoration: none;
+  transition: color 0.4s;
+}
+
+a:hover{
+  color: #42b883;
+  text-decoration: underline;
+}
+
+a.router-link-exact-active {
+  text-decoration: underline;
+}
+
+
 /* router transition */
 
 .page-enter-active, .page-leave-active {

@@ -30,12 +30,6 @@ export default {
   created() {
     this.$store.dispatch("FETCH_ASK")
   },
-  bofreMount() {
-
-  },
-  mounted() {
-    // mounte에서 data요청을 하면 vue의 reactivity system 때문에 화면이 다시 그려지게 된다.
-  },
 }
 </script>
 
