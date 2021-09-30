@@ -7,7 +7,7 @@
         class="post"
       >
         <div class="points">
-          {{ item.points }}
+          {{ item.points || 0 }}
         </div>
         <div>
           <p class="news-title">

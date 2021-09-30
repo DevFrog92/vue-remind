@@ -1,18 +1,35 @@
 <template>
   <div>
-    <h1>Jobs List</h1>
-    <p
-      v-for="item in this.$store.state.jobs"
-      :key="item.id"
-    >
-      <a
-        :href="item.url"
-        target="_blank"
+    <ul class="jobs-list">
+      <li
+        v-for="(item,index) in this.$store.state.jobs"
+        :key="item.id"
+        class="post"
       >
-        {{ item.title }}
-      </a>
-      <small>{{ item.time_ago }},{{ item.domain }}</small>
-    </p>
+        <div class="points">
+          {{ index }}
+        </div>
+        <div>
+          <p class="jobs-title">
+            <a
+              :href="item.url"
+              target="_blank"
+            >
+              <router-link :to="`/jobs/${item.id}`">
+                {{ item.title }}
+              </router-link>
+            </a>
+          </p>
+          <small class="link-text">
+            {{ item.time_ago }} by
+            <a
+              :href="item.url"
+              target="_blank"
+            >{{ item.domain }}</a>
+          </small>
+        </div>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -25,6 +42,33 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+.jobs-list {
+  margin: 0;
+  padding: 0;
+}
 
+.post {
+  list-style: none;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+
+.points {
+  width: 80px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #42b883;
+}
+
+.jobs-title {
+  margin: 0;
+}
+
+.link-text {
+  color: #828282;
+}
 </style>
