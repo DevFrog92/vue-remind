@@ -1,44 +1,16 @@
 <template>
   <div>
-    <ul class="jobs-list">
-      <li
-        v-for="(item,index) in this.$store.state.jobs"
-        :key="item.id"
-        class="post"
-      >
-        <div class="points">
-          {{ index }}
-        </div>
-        <div>
-          <p class="jobs-title">
-            <a
-              :href="item.url"
-              target="_blank"
-            >
-              <router-link :to="`/jobs/${item.id}`">
-                {{ item.title }}
-              </router-link>
-            </a>
-          </p>
-          <small class="link-text">
-            {{ item.time_ago }} by
-            <a
-              :href="item.url"
-              target="_blank"
-            >{{ item.domain }}</a>
-          </small>
-        </div>
-      </li>
-    </ul>
+    <list-item />
   </div>
 </template>
 
 <script>
-export default {
-  created() {
-    this.$store.dispatch("FETCH_JOBS")
-  },
+import ListItem from "../components/ListItem.vue"
 
+export default {
+  components: {
+    ListItem,
+  },
 }
 </script>
 

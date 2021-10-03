@@ -1,43 +1,15 @@
 <template>
   <div>
-    <ul class="news-list">
-      <li
-        v-for="item in this.$store.state.news"
-        :key="item.id"
-        class="post"
-      >
-        <div class="points">
-          {{ item.points || 0 }}
-        </div>
-        <div>
-          <p class="news-title">
-            <a
-              :href="item.url"
-              target="_blank"
-            >
-              {{ item.title }}
-            </a>
-          </p>
-          <small class="link-text">
-            {{ item.time_ago }} by
-            <router-link
-              class="link-text"
-              :to="`/user/${item.user}`"
-            >
-              {{ item.user }}
-            </router-link>
-          </small>
-        </div>
-      </li>
-    </ul>
+    <list-item />
   </div>
 </template>
 
 <script>
+import ListItem from "../components/ListItem.vue"
 
 export default {
-  created() {
-    this.$store.dispatch("FETCH_NEWS")
+  components: {
+    ListItem,
   },
 }
 </script>

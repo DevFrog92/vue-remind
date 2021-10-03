@@ -1,52 +1,14 @@
 <template>
   <div>
-    <ul class="ask-list">
-      <li
-        v-for="item in askItems"
-        :key="item.id"
-        class="post"
-      >
-        <div class="points">
-          {{ item.points }}
-        </div>
-        <div>
-          <p class="ask-title">
-            <a
-              :href="item.url"
-              target="_blank"
-            >
-              <router-link :to="`/ask/${item.id}`">
-                {{ item.title }}
-              </router-link>
-            </a>
-          </p>
-          <small class="link-text">
-            {{ item.time_ago }} by
-            <router-link
-              class="link-text"
-              :to="`/user/${item.user}`"
-            >
-              {{ item.user }}
-            </router-link>
-          </small>
-        </div>
-      </li>
-    </ul>
+    <list-item />
   </div>
 </template>
 
 <script>
-import { mapGetters, } from "vuex"
+import ListItem from "../components/ListItem.vue"
 
 export default {
-  computed: {
-    ...mapGetters({
-      askItems: "fetchedAsk",
-    }),
-  },
-  created() {
-    this.$store.dispatch("FETCH_ASK")
-  },
+  components: { ListItem, },
 }
 </script>
 
