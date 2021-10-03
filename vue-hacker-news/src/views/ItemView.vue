@@ -1,20 +1,22 @@
 <template>
   <div>
     <section>
-      <!-- 질문 상세 정보 -->
-      <div class="user_container">
-        <div>
-          <i class="fas fa-user" />
-        </div>
-        <div class="user_desc">
-          <router-link :to="`/user/${item.user}`">
+      <!-- 사용자 상세 정보 -->
+      <user-profile :info="item">
+        <div slot="username">
+          <router-link
+            class="link-text"
+            :to="`/user/${item.user}`"
+          >
             {{ item.user }}
           </router-link>
-          <div class="time">
-            {{ item.time_ago }}
-          </div>
         </div>
-      </div>
+        <template slot="time">
+          {{ `Posted ${item.time_ago}` }}
+        </template>
+      </user-profile>
+    </section>
+    <section>
       <h2>{{ item.title }}</h2>
       <div class="content" />
     </section>
@@ -26,7 +28,10 @@
 
 <script>
 import { mapGetters, } from "vuex"
+import UserProfile from "../components/UserProfile.vue"
+
 export default {
+  components: { UserProfile, },
   data() {
     return {
       itemContentElem: null,

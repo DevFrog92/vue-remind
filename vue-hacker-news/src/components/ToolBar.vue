@@ -1,13 +1,13 @@
 <template>
   <nav class="header">
     <router-link to="/news">
-      news
+      News
     </router-link> |
     <router-link to="/ask">
-      ask
+      Ask
     </router-link> |
     <router-link to="/jobs">
-      jobs
+      Jobs
     </router-link>
   </nav>
 </template>

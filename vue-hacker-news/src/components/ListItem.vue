@@ -10,21 +10,36 @@
       </div>
       <div>
         <p class="title">
-          <a
-            :href="item.url"
-            target="_blank"
-          >
-            {{ item.title }}
-          </a>
+          <template v-if="item.domain">
+            <a
+              :href="item.url"
+              target="_blank"
+            >
+              {{ item.title }}
+            </a>
+          </template>
+          <template v-else>
+            <router-link :to="`ask/${item.id}`">
+              {{ item.title }}
+            </router-link>
+          </template>
         </p>
         <small class="link-text">
           {{ item.time_ago }} by
           <router-link
+            v-if="item.user"
             class="link-text"
             :to="`/user/${item.user}`"
           >
             {{ item.user }}
           </router-link>
+          <a
+            v-else
+            :href="item.url"
+            target="_blank"
+          >
+            {{ item.domain }}
+          </a>
         </small>
       </div>
     </li>
@@ -44,8 +59,7 @@ export default {
     },
   },
   created() {
-    this.target = this.$route.path.slice(1)
-
+    this.target = this.$route.name
     this.$store.dispatch(`FETCH_${this.target.toUpperCase()}`)
   },
 }
