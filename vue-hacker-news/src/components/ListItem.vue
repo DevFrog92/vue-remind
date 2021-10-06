@@ -48,19 +48,10 @@
 
 <script>
 export default {
-  data() {
-    return {
-      target: null,
-    }
-  },
   computed: {
     postList() {
-      return this.$store.state[this.target]
+      return this.$store.state.lists
     },
-  },
-  created() {
-    this.target = this.$route.name
-    // this.$store.dispatch(`FETCH_${this.target.toUpperCase()}`)
   },
 }
 </script>
