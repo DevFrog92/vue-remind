@@ -60,7 +60,7 @@ export default {
   },
   created() {
     this.target = this.$route.name
-    this.$store.dispatch(`FETCH_${this.target.toUpperCase()}`)
+    // this.$store.dispatch(`FETCH_${this.target.toUpperCase()}`)
   },
 }
 </script>
