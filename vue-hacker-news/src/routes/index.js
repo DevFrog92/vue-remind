@@ -18,7 +18,6 @@ export const router = new VueRouter({
       path: "/news",
       name: "news",
       component: NewsView,
-      // component: createListView("NewsView"),
     },
     {
       path: "/ask",
