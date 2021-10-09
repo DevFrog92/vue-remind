@@ -4,8 +4,21 @@ import NewsView from "../views/NewsView.vue"
 import ItemView from "../views/ItemView.vue"
 import UserView from "../views/UserView.vue"
 import createListView from "../views/CreateListView.js"
+import bus from "../utils/bus.js"
+import { store, } from "../store/index"
 
 Vue.use(VueRouter)
+
+const fetchData = (to, from, next) => {
+  bus.$emit("start:spinner")
+  store.dispatch("FETCH_LIST", to.name)
+    .then(() => {
+      next()
+    })
+    .catch((error) => {
+      throw new Error(error)
+    })
+}
 
 export const router = new VueRouter({
   mode: "history",
@@ -18,23 +31,19 @@ export const router = new VueRouter({
       path: "/news",
       name: "news",
       component: NewsView,
-      beforeEnter: (to, from, next) => {
-        // 인증정보를 확인할 때 많이 사용한다.
-        console.log("to", to)
-        console.log("from", from)
-        console.log("next", next)
-        next()
-      },
+      beforeEnter: fetchData,
     },
     {
       path: "/ask",
       name: "ask",
       component: createListView("AskView"),
+      beforeEnter: fetchData,
     },
     {
       path: "/jobs",
       name: "jobs",
       component: createListView("JobsView"),
+      beforeEnter: fetchData,
     },
     {
       path: "/user/:id",

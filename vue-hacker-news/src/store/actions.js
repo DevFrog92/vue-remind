@@ -21,11 +21,8 @@ export default {
   },
   // 2
   FETCH_LIST({ commit, }, pageName) {
-    console.log("3")
-
     return fetchList(pageName)
       .then((response) => {
-        console.log("4")
         commit("SET_LIST", response.data)
 
         return response
