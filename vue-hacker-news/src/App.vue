@@ -23,6 +23,13 @@ export default {
       loadingStatus: false,
     }
   },
+  watch: {
+    $route(to, from) {
+      if (to.path !== from.path) {
+        console.log(to.name, from.name)
+      }
+    },
+  },
   created() {
     bus.$on("start:spinner", this.startSpinner)
     bus.$on("end:spinner", this.endSpinner)

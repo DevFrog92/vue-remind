@@ -4,6 +4,7 @@
   </div>
 </template>
 
+
 <script>
 import ListItem from "../components/ListItem.vue"
 import ListMixin from "../mixins/ListMixin"
@@ -13,6 +14,10 @@ export default {
     ListItem,
   },
   mixins: [ListMixin],
+  beforeRouteUpdate(to, from, next) {
+    console.log(to, from)
+    next()
+  },
 }
 </script>
 
