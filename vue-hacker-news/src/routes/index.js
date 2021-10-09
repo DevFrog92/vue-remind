@@ -18,12 +18,18 @@ export const router = new VueRouter({
       path: "/news",
       name: "news",
       component: NewsView,
+      beforeEnter: (to, from, next) => {
+        // 인증정보를 확인할 때 많이 사용한다.
+        console.log("to", to)
+        console.log("from", from)
+        console.log("next", next)
+        next()
+      },
     },
     {
       path: "/ask",
       name: "ask",
       component: createListView("AskView"),
-
     },
     {
       path: "/jobs",
