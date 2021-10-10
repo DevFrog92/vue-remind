@@ -5,6 +5,11 @@
         login
       </button>
     </div>
+    <div class="login">
+      <button @click="loginUserAsync">
+        login
+      </button>
+    </div>
     <tool-bar />
     <transition name="page">
       <router-view />
@@ -54,8 +59,30 @@ export default {
     },
     loginUser() {
       axios.get("https://jsonplaceholder.typicode.com/users/1")
-        .then(response => console.log(response))
+        .then(response => {
+          console.log(response.data)
+          if (response.data.id === 1) {
+            axios.get("https://jsonplaceholder.typicode.com/todos")
+              .then(response => console.log(response))
+              .catch(error => console.log(error))
+          }
+        })
         .catch(error => console.log(error))
+    },
+    async loginUserAsync() {
+      // 받아오는 시점에서 data에 값을 입력한다.
+      // console을 실행안하는 것이 아니라, await가 동기 처리처럼 만들어 줄 뿐이다.
+      const {data, } = await axios.get("https://jsonplaceholder.typicode.com/users/1")
+
+      // data가 오기전에 먼저 실행된다.
+      console.log("10")
+      if (data.id === 1) {
+        console.log(data)
+        const list = await axios.get("https://jsonplaceholder.typicode.com/todos")
+
+        console.log("11")
+        console.log(list.data)
+      }
     },
   },
 }
