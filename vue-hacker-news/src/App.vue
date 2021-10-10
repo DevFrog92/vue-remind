@@ -23,7 +23,7 @@ import ToolBar from "@/components/ToolBar"
 import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
 import axios from "axios"
-
+import { handleException, } from "./utils/handler"
 export default {
   components: {
     ToolBar,
@@ -87,6 +87,8 @@ export default {
           console.log(list.data)
         }
       } catch (error) {
+        // 상태 코드에 대한 예외처리가 가능하다.
+        handleException(error)
         console.log(error)
       }
     },
