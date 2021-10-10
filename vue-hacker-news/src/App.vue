@@ -70,18 +70,24 @@ export default {
         .catch(error => console.log(error))
     },
     async loginUserAsync() {
-      // 받아오는 시점에서 data에 값을 입력한다.
-      // console을 실행안하는 것이 아니라, await가 동기 처리처럼 만들어 줄 뿐이다.
-      const {data, } = await axios.get("https://jsonplaceholder.typicode.com/users/1")
+      // then, catch는 비동기 처리에 대해서만 예외처리를 수행하는 반면
+      // try, catch는 일반적인 자바스트립트 문법 오류에 대해서도 예외처리가 가능하다.
+      try {
+        // 받아오는 시점에서 data에 값을 입력한다.
+        // console을 실행안하는 것이 아니라, await가 동기 처리처럼 만들어 줄 뿐이다.
+        const {data, } = await axios.get("https://jsonplaceholder.typicode.com/users/1")
 
-      // data가 오기전에 먼저 실행된다.
-      console.log("10")
-      if (data.id === 1) {
-        console.log(data)
-        const list = await axios.get("https://jsonplaceholder.typicode.com/todos")
+        // data가 오기전에 먼저 실행된다.
+        console.log("10")
+        if (data.id === 1) {
+          console.log(data)
+          const list = await axios.get("https://jsonplaceholder.typicode.com/todos")
 
-        console.log("11")
-        console.log(list.data)
+          console.log("11")
+          console.log(list.data)
+        }
+      } catch (error) {
+        console.log(error)
       }
     },
   },
