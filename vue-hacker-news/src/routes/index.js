@@ -9,15 +9,20 @@ import { store, } from "../store/index"
 
 Vue.use(VueRouter)
 
-const fetchData = (to, from, next) => {
-  bus.$emit("start:spinner")
-  store.dispatch("FETCH_LIST", to.name)
-    .then(() => {
+const fetchData = async(to, from, next) => {
+  try {
+    bus.$emit("start:spinner")
+    const response = await store.dispatch("FETCH_LIST", to.name)
+
+    console.log("loading data")
+    console.log(response)
+    if (response.status === 200) {
+      console.log("fetched data")
       next()
-    })
-    .catch((error) => {
-      throw new Error(error)
-    })
+    }
+  } catch (error) {
+    console.log(error)
+  }
 }
 
 export const router = new VueRouter({

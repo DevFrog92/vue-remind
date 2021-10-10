@@ -1,32 +1,36 @@
 import { fetchUserInfo, fetchAskItem, fetchList, } from "../api/index.js"
 
 export default {
-  FETCH_USER({commit, }, userName) {
-    return fetchUserInfo(userName)
-      .then(response => {
-        commit("SET_USER", response.data)
-      })
-      .catch(error => {
-        throw new Error(error)
-      })
-  },
-  FETCH_ASK_ITEM({ commit, }, askItem) {
-    return fetchAskItem(askItem)
-      .then(response => {
-        commit("SET_ASK_ITEM", response.data)
-      })
-      .catch(error => {
-        throw new Error(error)
-      })
-  },
-  // 2
-  FETCH_LIST({ commit, }, pageName) {
-    return fetchList(pageName)
-      .then((response) => {
-        commit("SET_LIST", response.data)
+  async FETCH_USER({ commit, }, userName) {
+    // async는 어떤 값을 return하는 것에 관계없이 promise를 반환하게 된다.
+    try {
+      const response = await fetchUserInfo(userName)
 
-        return response
-      })
-      .catch(error => console.log(error))
+      commit("SET_USER", response.data)
+
+      return response
+    } catch (error) {
+      throw new Error(error)
+    }
+  },
+  async FETCH_ASK_ITEM({ commit, }, askItem) {
+    try {
+      const { data, } = await fetchAskItem(askItem)
+
+      commit("SET_ASK_ITEM", data)
+
+      return data
+    }
+    catch (error) {
+      throw new Error(error)
+    }
+  },
+  async FETCH_LIST({ commit, }, pageName) {
+    const response = await fetchList(pageName)
+
+    console.log("actions", typeof response)
+    commit("SET_LIST", response.data)
+
+    return response
   },
 }
