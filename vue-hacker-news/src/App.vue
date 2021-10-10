@@ -1,5 +1,10 @@
 <template>
   <div id="app">
+    <div class="login">
+      <button @click="loginUser">
+        login
+      </button>
+    </div>
     <tool-bar />
     <transition name="page">
       <router-view />
@@ -12,6 +17,7 @@
 import ToolBar from "@/components/ToolBar"
 import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
+import axios from "axios"
 
 export default {
   components: {
@@ -45,6 +51,11 @@ export default {
     },
     endSpinner() {
       this.loadingStatus = false
+    },
+    loginUser() {
+      axios.get("https://jsonplaceholder.typicode.com/users/1")
+        .then(response => console.log(response))
+        .catch(error => console.log(error))
     },
   },
 }
