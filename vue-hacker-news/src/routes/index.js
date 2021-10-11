@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import NewsView from "../views/NewsView.vue"
 import ItemView from "../views/ItemView.vue"
 import UserView from "../views/UserView.vue"
+import Nav from "../views/Nav.vue"
 import createListView from "../views/CreateListView.js"
 import bus from "../utils/bus.js"
 import { store, } from "../store/index"
@@ -30,7 +31,12 @@ export const router = new VueRouter({
   routes: [
     {
       path: "/",
-      redirect: "/news",
+      redirect: "/nav",
+    },
+    {
+      path: "/nav",
+      name: "nav",
+      component: Nav,
     },
     {
       path: "/news",

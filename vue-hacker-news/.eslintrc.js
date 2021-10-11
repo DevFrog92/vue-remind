@@ -1,9 +1,12 @@
 module.exports = {
   parserOptions: {
     parser: "babel-eslint",
+    ecmaVersion: "2019",
+    sourceType:"module"
   },
   env: {
     browser: true,
+    jest: true
   },
   extends: [
     // add more generic rulesets here, such as:

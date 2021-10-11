@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <div class="login">
+    <!-- <div class="login">
       <button @click="loginUser">
         login
       </button>
@@ -12,22 +12,22 @@
     </div>
     <tool-bar />
     <transition name="page">
-      <router-view />
     </transition>
-    <Spinner :loading="loadingStatus" />
+    <Spinner :loading="loadingStatus" /> -->
+    <router-view />
   </div>
 </template>
 
 <script>
-import ToolBar from "@/components/ToolBar"
-import Spinner from "@/components/Spinner"
+// import ToolBar from "@/components/ToolBar"
+// import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
 import axios from "axios"
 import { handleException, } from "./utils/handler"
 export default {
   components: {
-    ToolBar,
-    Spinner,
+    // ToolBar,
+    // Spinner,
   },
   data() {
     return {
