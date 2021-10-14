@@ -9,25 +9,24 @@
       <button @click="loginUserAsync">
         login
       </button>
-    </div>
+    </div> -->
     <tool-bar />
-    <transition name="page">
-    </transition>
-    <Spinner :loading="loadingStatus" /> -->
+    <transition name="page" />
+    <Spinner :loading="loadingStatus" />
     <router-view />
   </div>
 </template>
 
 <script>
-// import ToolBar from "@/components/ToolBar"
-// import Spinner from "@/components/Spinner"
+import ToolBar from "@/components/ToolBar"
+import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
 import axios from "axios"
 import { handleException, } from "./utils/handler"
 export default {
   components: {
-    // ToolBar,
-    // Spinner,
+    ToolBar,
+    Spinner,
   },
   data() {
     return {
