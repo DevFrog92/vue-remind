@@ -3,6 +3,7 @@ import VueRouter from "vue-router"
 import NewsView from "../views/NewsView.vue"
 import ItemView from "../views/ItemView.vue"
 import UserView from "../views/UserView.vue"
+import EventTestView from "../views/EventTestView.vue"
 import Nav from "../views/Nav.vue"
 import createListView from "../views/CreateListView.js"
 import bus from "../utils/bus.js"
@@ -63,6 +64,10 @@ export const router = new VueRouter({
     {
       path: "/ask/:id",
       component: ItemView,
+    },
+    {
+      path: "/test",
+      component: EventTestView,
     }
   ],
 })
