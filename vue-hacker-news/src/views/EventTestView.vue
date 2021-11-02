@@ -2,6 +2,7 @@
   <div class="event_test_view_wrapper">
     <h1>this is event test view</h1>
     <h1>{{ count }}</h1>
+    <img src="../../1.svg">
   </div>
 </template>
 
