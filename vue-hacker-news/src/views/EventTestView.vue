@@ -22,13 +22,36 @@
         {{ number }}
       </div>
       <div class="timer_circle">
-        <div class="timer_circle_dot">
+        <div
+          v-if="level === 'easy'"
+          class="timer_circle_dot_easy"
+        >
+          <span class="dot" />
+        </div>
+        <div
+          v-if="level === 'hard'"
+          class="timer_circle_dot_hard"
+        >
           <span class="dot" />
         </div>
         <div class="timer_circle_left" />
-        <div class="left_progress" />
+        <div
+          v-if="level === 'easy'"
+          class="left_progress_easy"
+        />
+        <div
+          v-if="level === 'hard'"
+          class="left_progress_hard"
+        />
         <div class="timer_circle_right" />
-        <div class="right_progress" />
+        <div
+          v-if="level === 'easy'"
+          class="right_progress_easy"
+        />
+        <div
+          v-if="level === 'hard'"
+          class="right_progress_hard"
+        />
       </div>
     </div>
   </div>
@@ -45,7 +68,7 @@ export default {
       blocks: null,
       timer: null,
       blockIndex: 0,
-      level: "easy",
+      level: "",
       barEle: null,
       barHeight: 17.5,
       growthFactor: 0,
@@ -72,6 +95,7 @@ export default {
     startTimer() {
       this.timer = setInterval(() => {
         if (this.number <= 0) {
+          this.level = ""
           clearInterval(this.timer)
 
           return
@@ -93,12 +117,14 @@ export default {
       this.setTimerAnimation(level)
     },
     setTimerAnimation(level) {
-      this.leftProgress = document.querySelector(".left_progress")
-      this.rightProgress = document.querySelector(".right_progress")
-      this.dotProgress = document.querySelector(".timer_circle_dot")
-      this.leftProgress.classList.add(level)
-      this.rightProgress.classList.add(level)
-      this.dotProgress.classList.add(level)
+      this.level = level
+
+      // this.leftProgress = document.querySelector(".left_progress")
+      // this.rightProgress = document.querySelector(".right_progress")
+      // this.dotProgress = document.querySelector(".timer_circle_dot")
+      // this.leftProgress.classList.add(level)
+      // this.rightProgress.classList.add(level)
+      // this.dotProgress.classList.add(level)
     },
     calBarHeight() {
       this.growthFactor = (this.barHeight/this.blockNumber)/this.barHeight
@@ -257,10 +283,9 @@ export default {
   z-index: 2;
   border: none;
   clip: rect(0px, 80px, 80px, 40px);
-
 }
 
-.left_progress,.right_progress{
+.left_progress_easy,.right_progress_easy,.left_progress_hard,.right_progress_hard{
   position: absolute;
   top: 0;
   left:0;
@@ -269,28 +294,21 @@ export default {
   height: 100%;
   border-radius: 100%;
   clip: rect(0px, 40px, 80px, 0px);
-  background: #A73FFF;
-  /* animation: left 5s linear forwards; */
+  background: #C175FF;
+  animation: left 2.5s linear forwards;
 }
 
-.right_progress{
+.right_progress_easy{
   clip: rect(0px, 80px, 80px, 40px);
-  /* animation: right 5s 5s linear forwards; */
-}
-
-.left_progress.easy{
-  animation: right 2.5s linear forwards;
-}
-
-.left_progress.hard{
-  animation: right 5s linear forwards;
-}
-
-.right_progress.easy{
   animation: right 2.5s 2.5s linear forwards;
 }
 
-.right_progress.hard{
+.left_progress_hard{
+  animation: left 5s linear forwards;
+}
+
+.right_progress_hard{
+  clip: rect(0px, 80px, 80px, 40px);
   animation: right 5s 5s linear forwards;
 }
 
@@ -315,20 +333,17 @@ export default {
   }
 }
 
-.timer_circle_dot {
+.timer_circle_dot_easy,.timer_circle_dot_hard {
   position: absolute;
   display: flex;
   justify-content: flex-end;
   top: 50%;
   width: 100%;
   transform: translate(0,-50%);
-}
-
-.timer_circle_dot.easy {
   animation: dot 5s linear forwards;
 }
 
-.timer_circle_dot.hard{
+.timer_circle_dot_hard {
   animation: dot 10s linear forwards;
 }
 
@@ -338,7 +353,7 @@ export default {
   right:0;
   width: 8px;
   height: 8px;
-  background: #A73FFF;
+  background: #C175FF;
   border-radius: 100%;
 }
 
@@ -355,5 +370,16 @@ export default {
     transform: rotate(270deg);
     z-index: 5;
   }
+}
+
+.timer_number {
+  position: absolute;
+  z-index: 6;
+  top: 50%;
+  left: 50%;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #C175FF;
+  transform: translate(-50%,-50%);
 }
 </style>
