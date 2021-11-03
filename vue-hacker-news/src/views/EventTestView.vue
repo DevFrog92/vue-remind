@@ -245,8 +245,8 @@ export default {
 }
 
 .timer_inner {
-  width: 80%;
-  height: 80%;
+  width: 85%;
+  height: 85%;
   border-radius: 100%;
   background-color: #fff;
   position: absolute;
@@ -349,10 +349,10 @@ export default {
 
 .dot {
   position: absolute;
-  top: -4px;
+  top: -3px;
   right:0;
-  width: 8px;
-  height: 8px;
+  width: 6px;
+  height: 6px;
   background: #C175FF;
   border-radius: 100%;
 }
