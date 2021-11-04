@@ -6,6 +6,7 @@ import UserView from "../views/UserView.vue"
 import EventTestView from "../views/EventTestView.vue"
 import Nav from "../views/Nav.vue"
 import createListView from "../views/CreateListView.js"
+import Timer from "../views/Timer.vue"
 import bus from "../utils/bus.js"
 import { store, } from "../store/index"
 
@@ -68,6 +69,10 @@ export const router = new VueRouter({
     {
       path: "/test",
       component: EventTestView,
+    },
+    {
+      path: "/timer",
+      component: Timer,
     }
   ],
 })
