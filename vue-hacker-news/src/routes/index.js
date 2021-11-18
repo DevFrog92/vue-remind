@@ -8,6 +8,7 @@ import Nav from "../views/Nav.vue"
 import createListView from "../views/CreateListView.js"
 import Timer from "../views/Timer.vue"
 import bus from "../utils/bus.js"
+import verticalCarousel from "../views/verticalCarousel"
 import { store, } from "../store/index"
 
 Vue.use(VueRouter)
@@ -73,6 +74,10 @@ export const router = new VueRouter({
     {
       path: "/timer",
       component: Timer,
+    },
+    {
+      path: "/carousel",
+      component: verticalCarousel,
     }
   ],
 })
