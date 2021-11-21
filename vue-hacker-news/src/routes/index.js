@@ -9,6 +9,7 @@ import createListView from "../views/CreateListView.js"
 import Timer from "../views/Timer.vue"
 import bus from "../utils/bus.js"
 import verticalCarousel from "../views/verticalCarousel"
+import balloonGame from "../views/balloonGame"
 import { store, } from "../store/index"
 
 Vue.use(VueRouter)
@@ -78,6 +79,10 @@ export const router = new VueRouter({
     {
       path: "/carousel",
       component: verticalCarousel,
+    },
+    {
+      path: "/balloon",
+      component: balloonGame,
     }
   ],
 })
