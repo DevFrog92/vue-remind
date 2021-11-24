@@ -10,6 +10,7 @@ import Timer from "../views/Timer.vue"
 import bus from "../utils/bus.js"
 import verticalCarousel from "../views/verticalCarousel"
 import balloonGame from "../views/balloonGame"
+import FeedbackModal from "../views/FeedbackModal"
 import { store, } from "../store/index"
 
 Vue.use(VueRouter)
@@ -83,6 +84,10 @@ export const router = new VueRouter({
     {
       path: "/balloon",
       component: balloonGame,
+    },
+    {
+      path: "/sound",
+      component: FeedbackModal,
     }
   ],
 })
