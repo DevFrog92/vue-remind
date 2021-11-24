@@ -22,9 +22,20 @@ export default {
       clickStatus: false,
     }
   },
+  mounted() {
+    this.addEventKeyPressUp()
+  },
   methods: {
     onClick() {
       this.clickStatus = !this.clickStatus
+    },
+    addEventKeyPressUp() {
+      window.addEventListener("keyup", this.keyHandler)
+    },
+    keyHandler(e) {
+      if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+        this.onClick()
+      }
     },
   },
 }
