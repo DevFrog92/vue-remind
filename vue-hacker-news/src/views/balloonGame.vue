@@ -99,12 +99,10 @@ export default {
       }
     },
     pumpingStart() {
-      console.log("down")
       this.pumpingState = true
       this.pump()
     },
     pumpingStop() {
-      console.log("up")
       this.pumpingState = false
     },
     pump() {
