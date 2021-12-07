@@ -22,7 +22,10 @@
 </template>
 
 <script>
+import preventBAckButton from "../mixins/preventBackEvent"
+
 export default {
+  mixins: [preventBAckButton],
   data() {
     return {
       balloonBodyWith: 98,
