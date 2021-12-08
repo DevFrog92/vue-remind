@@ -5,8 +5,7 @@
       <span class="circle second_circle" />
       <span class="circle first_circle" />
       <img
-        src="@/assets/images/games/mo/check_in_circle.svg"
-        class="circle"
+        class="img_svg"
       >
     </div>
   </div>
@@ -14,6 +13,36 @@
 
 <script>
 export default {
+  props: {
+    imgName: {
+      type: String,
+      default: "",
+    },
+    animationType: {
+      type: String,
+      default: "infinite",
+    },
+  },
+  mounted() {
+    this.grabImgElem()
+    this.grabCircles()
+  },
+  methods: {
+    grabCircles() {
+      const circles = document.querySelectorAll(".circle")
+
+      this.setAnimation(circles)
+    },
+    grabImgElem() {
+      const imgElem = document.querySelector(".img_svg")
+
+      // imgElem.src = require(`~/assets/images/games/money/${this.imgName}.svg`)
+      imgElem.src = require("@/assets/images/games/mo/opponent.svg")
+    },
+    setAnimation(circles) {
+      circles.forEach(circle => circle.classList.add(this.animationType))
+    },
+  },
 }
 </script>
 
@@ -35,9 +64,7 @@ export default {
   align-items: center;
 }
 
-.circle {
-  width: 96px;
-  height: 96px;
+.img_svg, .circle {
   position: absolute;
 }
 
@@ -48,50 +75,82 @@ export default {
   border: 1px solid #DEB5FF;
   background-color: #F8F0FF;
   border-radius: 100%;
+}
+
+.first_circle.not_infinite {
   animation: first_circle_scale_up .5s forwards linear;
 }
 
+.first_circle.infinite {
+  animation: first_circle_scale_up 1.5s infinite linear;
+}
+
 @keyframes first_circle_scale_up {
-  100% {
+  50% {
     opacity: 1;
-    width: 129.81px;
-    height: 129.81px;
+  }
+
+  100% {
+    opacity: 0;
+    width: 130px;
+    height: 130px;
   }
 }
 
 .second_circle {
   opacity: 0;
-  width: 129.81px;
-  height: 129.81px;
+  width: 130px;
+  height: 130px;
   border: 1px solid #EDD8FF;
   background-color: #FDFBFF;
   border-radius: 100%;
+}
+
+.second_circle.not_infinite {
   animation: seond_circle_scale_up .4s .2s forwards linear;
 }
 
+.second_circle.infinite {
+  animation: seond_circle_scale_up 1.3s infinite linear;
+}
+
 @keyframes seond_circle_scale_up {
-  100% {
+  50% {
     opacity: 1;
-    width: 198.26px;
-    height: 198.26px;
+  }
+
+  100% {
+    opacity: 0;
+    width: 199px;
+    height: 199px;
   }
 }
 
 .last_circle {
   opacity: 0;
-  width: 198.26px;
-  height: 198.26px;
+  width: 199px;
+  height: 199px;
   border-radius: 100%;
   border: 1px solid #FBF5FF;
-  animation: last_circle_scale_up .4s .3s forwards linear;
+}
 
+.last_circle.not_infinite {
+  animation: last_circle_scale_up .4s .3s forwards linear;
+}
+
+.last_circle.infinite {
+  animation: last_circle_scale_up 1s infinite linear;
 }
 
 @keyframes last_circle_scale_up {
-  100% {
+  50% {
     opacity: 1;
-    width: 247.82px;
-    height: 247.82px;
+  }
+
+  100% {
+    opacity: 0;
+    width: 248px;
+    height: 248px;
   }
 }
 </style>

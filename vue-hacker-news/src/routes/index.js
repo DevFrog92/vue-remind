@@ -12,6 +12,7 @@ import verticalCarousel from "../views/verticalCarousel"
 import balloonGame from "../views/balloonGame"
 import FeedbackModal from "../views/FeedbackModal"
 import BeforeMatch from "../views/BeforeMatch"
+import Dot from "../views/Dot"
 import { store, } from "../store/index"
 
 Vue.use(VueRouter)
@@ -93,6 +94,10 @@ export const router = new VueRouter({
     {
       path: "/wait",
       component: BeforeMatch,
+    },
+    {
+      path: "/dot",
+      component: Dot,
     }
   ],
 })
