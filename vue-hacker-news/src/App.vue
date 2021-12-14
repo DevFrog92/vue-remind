@@ -1,5 +1,18 @@
 <template>
   <div id="app">
+    <div class="json_editor_wrapper">
+      <v-jsoneditor
+        v-model="json"
+        :options="options"
+        :plus="false"
+        height="300px"
+        width="200px"
+        @error="onError"
+      />
+    </div>
+    <button @click="submit">
+      submit
+    </button>
     <!-- <div class="login">
       <button @click="loginUser">
         login
@@ -18,19 +31,28 @@
 </template>
 
 <script>
+import VJsoneditor from "v-jsoneditor"
 import ToolBar from "@/components/ToolBar"
 import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
 import axios from "axios"
+
 import { handleException, } from "./utils/handler"
 export default {
   components: {
     ToolBar,
     Spinner,
+    VJsoneditor,
   },
   data() {
     return {
       loadingStatus: false,
+      json: {
+        "hello": "vue",
+      },
+      options: {
+        mode: "code",
+      },
     }
   },
   watch: {
@@ -50,11 +72,17 @@ export default {
     bus.$off("end:spinner", this.endSpinner)
   },
   methods: {
+    onError() {
+      console.log("error")
+    },
     startSpinner() {
       this.loadingStatus = true
     },
     endSpinner() {
       this.loadingStatus = false
+    },
+    submit() {
+      console.log(this.json)
     },
     loginUser() {
       axios.get("https://jsonplaceholder.typicode.com/users/1")
@@ -125,5 +153,9 @@ a.router-link-exact-active {
 }
 .page-enter, .page-leave-to /* .page-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.json_editor_wrapper {
+  width: 500px;
 }
 </style>
