@@ -1,6 +1,11 @@
 <template>
   <div id="app">
-    <div class="json_editor_wrapper">
+    <audio
+      class="audio_elem"
+      src="@/static/tower/disk_drop.mp3"
+      type="audio/mp3"
+    />
+    <!-- <div class="json_editor_wrapper">
       <v-jsoneditor
         v-model="json"
         :options="options"
@@ -9,10 +14,10 @@
         width="200px"
         @error="onError"
       />
-    </div>
-    <button @click="submit">
+    </div> -->
+    <!-- <button @click="submit">
       submit
-    </button>
+    </button> -->
     <!-- <div class="login">
       <button @click="loginUser">
         login
@@ -23,6 +28,9 @@
         login
       </button>
     </div> -->
+    <button @click="play">
+      play
+    </button>
     <tool-bar />
     <transition name="page" />
     <Spinner :loading="loadingStatus" />
@@ -31,7 +39,7 @@
 </template>
 
 <script>
-import VJsoneditor from "v-jsoneditor"
+// import VJsoneditor from "v-jsoneditor"
 import ToolBar from "@/components/ToolBar"
 import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
@@ -42,7 +50,7 @@ export default {
   components: {
     ToolBar,
     Spinner,
-    VJsoneditor,
+    // VJsoneditor,
   },
   data() {
     return {
@@ -53,6 +61,9 @@ export default {
       options: {
         mode: "code",
       },
+      audioCtx: null,
+      track: null,
+      dataset: {playing: false, },
     }
   },
   watch: {
@@ -71,7 +82,74 @@ export default {
     bus.$off("start:spinner", this.startSpinner)
     bus.$off("end:spinner", this.endSpinner)
   },
+  mounted() {
+    // this.generateAudioElem()
+  },
   methods: {
+    generateAudioElem() {
+      // if (this.audioCtx === null) {
+      //   const AudioContext = window.AudioContext || window.webkitAudioContext
+
+      //   this.audioCtx = new AudioContext()
+
+      //   const audioElem = document.querySelector(".audio_elem")
+
+      //   this.track = this.audioCtx.createMediaElementSource(audioElem)
+      //   this.track.connect(this.audioCtx.destination)
+
+      // }
+
+
+      // const gainNode = this.audioCtx.createGain()
+
+      // gainNode.gain.value = 4
+
+      // const gainConnected = source.connect(gainNode)
+
+      // gainConnected.connect(this.audioCtx.destination)
+    },
+    play() {
+      const audioElem = document.querySelector(".audio_elem")
+
+      if (this.audioCtx === null) {
+
+        const AudioContext = window.AudioContext || window.webkitAudioContext
+
+        this.audioCtx = new AudioContext()
+
+
+        this.track = this.audioCtx.createMediaElementSource(audioElem)
+        this.track.connect(this.audioCtx.destination)
+      }
+      // audioElem.play()
+      // console.log("play")
+
+      if (this.audioCtx.state === "suspended") {
+        console.log("suspended")
+        this.audioCtx.resume()
+      }
+      console.log("enter play function")
+      console.log(this.dataset.playing)
+      if (this.dataset.playing === false) {
+        console.log("play")
+        audioElem.play()
+        this.dataset.playing = true
+        // if track is playing pause it
+      } else if (this.dataset.playing === true) {
+        audioElem.pause()
+        this.dataset.playing = false
+      }
+
+
+      audioElem.addEventListener("ended", () => {
+        console.log("end")
+        this.dataset.playing = false
+      }, false)
+      // let state = this.getAttribute("aria-checked") === "true" ? true : false
+
+      // this.setAttribute( "aria-checked", state ? "false" : "true" )
+
+    },
     onError() {
       console.log("error")
     },
