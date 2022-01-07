@@ -4,8 +4,8 @@ import NewsView from "../views/NewsView.vue"
 import ItemView from "../views/ItemView.vue"
 import UserView from "../views/UserView.vue"
 import EventTestView from "../views/EventTestView.vue"
-import Nav from "../views/Nav.vue"
 import createListView from "../views/CreateListView.js"
+import Nav from "../views/Nav.vue"
 import Timer from "../views/Timer.vue"
 import bus from "../utils/bus.js"
 import verticalCarousel from "../views/verticalCarousel"
@@ -13,6 +13,7 @@ import balloonGame from "../views/balloonGame"
 import FeedbackModal from "../views/FeedbackModal"
 import BeforeMatch from "../views/BeforeMatch"
 import Dot from "../views/Dot"
+import Dot2 from "../views/Dot2"
 import { store, } from "../store/index"
 
 Vue.use(VueRouter)
@@ -98,6 +99,10 @@ export const router = new VueRouter({
     {
       path: "/dot",
       component: Dot,
+    },
+    {
+      path: "/dot2",
+      component: Dot2,
     }
   ],
 })
