@@ -72,7 +72,6 @@ export default {
   opacity: 0;
   width: 96px;
   height: 96px;
-  border: 1px solid #DEB5FF;
   background-color: #F8F0FF;
   border-radius: 100%;
 }
@@ -101,7 +100,6 @@ export default {
   opacity: 0;
   width: 130px;
   height: 130px;
-  border: 1px solid #EDD8FF;
   background-color: #FDFBFF;
   border-radius: 100%;
 }
@@ -131,7 +129,6 @@ export default {
   width: 199px;
   height: 199px;
   border-radius: 100%;
-  border: 1px solid #FBF5FF;
 }
 
 .last_circle.not_infinite {
