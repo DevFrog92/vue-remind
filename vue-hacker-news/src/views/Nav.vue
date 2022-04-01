@@ -14,6 +14,12 @@
       >
         menu
       </div>
+      <button
+        type="button"
+        @click="occurError"
+      >
+        occur error
+      </button>
       <ul class="nav_list">
         <li>
           <span>menu logo</span>
@@ -97,7 +103,11 @@
 
 <script>
 export default {
-
+  methods: {
+    occurError() {
+      return Promise.reject("error")
+    },
+  },
 }
 </script>
 

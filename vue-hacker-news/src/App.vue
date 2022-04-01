@@ -1,10 +1,16 @@
 <template>
-  <div id="app">
-    <audio
+  <ErrorBoundary id="app">
+    <!-- <audio
       class="audio_elem"
       src="@/static/tower/disk_drop.mp3"
       type="audio/mp3"
-    />
+    /> -->
+    <!-- <button
+      type="button"
+      @click="occurError"
+    >
+      occur error
+    </button> -->
     <!-- <div class="json_editor_wrapper">
       <v-jsoneditor
         v-model="json"
@@ -28,28 +34,28 @@
         login
       </button>
     </div> -->
-    <button @click="play">
+    <!-- <button @click="play">
       play
-    </button>
-    <tool-bar />
+    </button> -->
+    <!-- <tool-bar />
     <transition name="page" />
-    <Spinner :loading="loadingStatus" />
+    <Spinner :loading="loadingStatus" />-->
     <router-view />
-  </div>
+  </ErrorBoundary>
 </template>
 
 <script>
 // import VJsoneditor from "v-jsoneditor"
-import ToolBar from "@/components/ToolBar"
-import Spinner from "@/components/Spinner"
+// import ToolBar from "@/components/ToolBar"
+// import Spinner from "@/components/Spinner"
 import bus from "./utils/bus.js"
 import axios from "axios"
 
 import { handleException, } from "./utils/handler"
 export default {
   components: {
-    ToolBar,
-    Spinner,
+    // ToolBar,
+    // Spinner,
     // VJsoneditor,
   },
   data() {
@@ -86,6 +92,9 @@ export default {
     // this.generateAudioElem()
   },
   methods: {
+    occurError() {
+      return Promise.reject("error")
+    },
     generateAudioElem() {
       // if (this.audioCtx === null) {
       //   const AudioContext = window.AudioContext || window.webkitAudioContext
